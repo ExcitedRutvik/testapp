@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iron Express - App Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            background: #f8fafc;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #DC2626 0%, #1F1F1F 100%);
+            color: white;
+            border-radius: 20px;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .phone-mockup {
+            width: 200px;
+            height: 400px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 20px;
+            border: 8px solid #1F1F1F;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .phone-content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            font-size: 10px;
+        }
+        
+        .card-header {
+            padding: 20px;
+            background: #DC2626;
+            color: white;
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .tech-badge {
+            background: #DC2626;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .cta-section {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .btn-primary {
+            background: #DC2626;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            transition: transform 0.2s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: scale(1.05);
+        }
+        
+        .preview-iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏃‍♂️ Iron Express</h1>
+            <p>Premium Doorstep Ironing App - Live Demo</p>
+        </div>
+        
+        <div class="cta-section" style="margin-bottom: 40px;">
+            <h2 style="margin-bottom: 20px;">📱 Live App Preview</h2>
+            <p style="margin-bottom: 20px; color: #6B7280;">Experience the complete Iron Express app flow right in your browser!</p>
+            <iframe src="index.html" class="preview-iframe"></iframe>
+            <div style="margin-top: 20px;">
+                <a href="index.html" target="_blank" class="btn-primary">🚀 Open Full Screen App</a>
+                <a href="https://github.com" target="_blank" class="btn-primary">📖 View Source Code</a>
+            </div>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="card-header">
+                    <h3>🎬 Splash & Authentication</h3>
+                </div>
+                <div class="card-body">
+                    <div class="phone-mockup">
+                        <div class="phone-content" style="background: #DC2626; justify-content: center; align-items: center; color: white; text-align: center;">
+                            <div style="font-size: 24px; margin-bottom: 10px;">🏃‍♂️</div>
+                            <div style="font-weight: bold; margin-bottom: 5px;">Iron Express</div>
+                            <div style="font-size: 8px; opacity: 0.9;">Premium Cloth Ironing</div>
+                        </div>
+                    </div>
+                    <h4>Premium Onboarding Experience</h4>
+                    <ul style="margin-top: 10px; color: #6B7280;">
+                        <li>✨ Animated splash screen with brand logo</li>
+                        <li>📱 Secure OTP-based mobile authentication</li>
+                        <li>🔒 Privacy-focused user verification</li>
+                        <li>⚡ Quick 3-step login process</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="card-header">
+                    <h3>🏠 Smart Home Dashboard</h3>
+                </div>
+                <div class="card-body">
+                    <div class="phone-mockup">
+                        <div class="phone-content" style="background: white; padding: 10px;">
+                            <div style="margin-bottom: 10px;">
+                                <div style="font-weight: bold; font-size: 12px; color: #1F1F1F;">Hello, Rahul! 👋</div>
+                                <div style="font-size: 8px; color: #6B7280;">Ready for fresh clothes?</div>
+                            </div>
+                            <div style="background: #F5F5F5; padding: 8px; border-radius: 6px; margin-bottom: 10px;">
+                                <div style="font-size: 7px;">📍 A-101, Sunshine Apartments...</div>
+                            </div>
+                            <div style="display: flex; gap: 3px; margin-bottom: 10px;">
+                                <div style="flex: 1; background: #F5F5F5; padding: 6px; border-radius: 4px; text-align: center;">
+                                    <div style="font-size: 10px;">⚡</div>
+                                    <div style="font-size: 6px;">Quick</div>
+                                </div>
+                                <div style="flex: 1; background: #F5F5F5; padding: 6px; border-radius: 4px; text-align: center;">
+                                    <div style="font-size: 10px;">🎯</div>
+                                    <div style="font-size: 6px;">Premium</div>
+                                </div>
+                                <div style="flex: 1; background: #F5F5F5; padding: 6px; border-radius: 4px; text-align: center;">
+                                    <div style="font-size: 10px;">🚚</div>
+                                    <div style="font-size: 6px;">Doorstep</div>
+                                </div>
+                            </div>
+                            <div style="background: #DC2626; color: white; padding: 8px; border-radius: 6px; text-align: center; font-size: 8px; font-weight: bold;">
+                                Schedule a Pickup
+                            </div>
+                        </div>
+                    </div>
+                    <h4>Personalized User Experience</h4>
+                    <ul style="margin-top: 10px; color: #6B7280;">
+                        <li>👋 Personalized welcome message</li>
+                        <li>📍 Smart address management</li>
+                        <li>⚡ Service highlights showcase</li>
+                        <li>🎯 One-tap pickup scheduling</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="card-header">
+                    <h3>🚀 Delivery Options</h3>
+                </div>
+                <div class="card-body">
+                    <div class="phone-mockup">
+                        <div class="phone-content" style="background: white; padding: 10px;">
+                            <div style="margin-bottom: 15px;">
+                                <div style="font-weight: bold; font-size: 10px; color: #1F1F1F;">Choose Delivery Option</div>
+                                <div style="font-size: 7px; color: #6B7280;">When would you like your clothes back?</div>
+                            </div>
+                            <div style="border: 2px solid #DC2626; border-radius: 8px; padding: 8px; margin-bottom: 6px;">
+                                <div style="display: flex; align-items: center;">
+                                    <span style="margin-right: 6px; font-size: 12px;">🚀</span>
+                                    <div>
+                                        <div style="font-weight: bold; font-size: 8px;">Quick</div>
+                                        <div style="font-size: 6px; color: #6B7280;">Within 4 hours</div>
+                                        <div style="font-size: 6px; color: #DC2626;">Express charges</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="border: 2px solid #10B981; border-radius: 8px; padding: 8px; margin-bottom: 6px;">
+                                <div style="display: flex; align-items: center;">
+                                    <span style="margin-right: 6px; font-size: 12px;">📅</span>
+                                    <div>
+                                        <div style="font-weight: bold; font-size: 8px;">Same Day</div>
+                                        <div style="font-size: 6px; color: #6B7280;">By end of day</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="border: 2px solid #F59E0B; border-radius: 8px; padding: 8px;">
+                                <div style="display: flex; align-items: center;">
+                                    <span style="margin-right: 6px; font-size: 12px;">📆</span>
+                                    <div>
+                                        <div style="font-weight: bold; font-size: 8px;">Schedule</div>
+                                        <div style="font-size: 6px; color: #6B7280;">Choose date & time</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4>Flexible Delivery Options</h4>
+                    <ul style="margin-top: 10px; color: #6B7280;">
+                        <li>🚀 Express delivery in 4 hours</li>
+                        <li>📅 Same-day standard service</li>
+                        <li>📆 Scheduled pickup & delivery</li>
+                        <li>💰 Transparent pricing model</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="card-header">
+                    <h3>👔 Smart Cloth Selection</h3>
+                </div>
+                <div class="card-body">
+                    <div class="phone-mockup">
+                        <div class="phone-content" style="background: white; padding: 10px;">
+                            <div style="margin-bottom: 10px;">
+                                <div style="font-weight: bold; font-size: 10px;">Select Your Clothes</div>
+                                <div style="font-size: 7px; color: #6B7280;">What needs ironing today?</div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; background: #F5F5F5; padding: 6px; border-radius: 4px; margin-bottom: 4px;">
+                                <div style="display: flex; align-items: center;">
+                                    <span style="margin-right: 4px; font-size: 10px;">👔</span>
+                                    <div>
+                                        <div style="font-size: 7px; font-weight: bold;">Shirt</div>
+                                        <div style="font-size: 6px; color: #6B7280;">₹10 per piece</div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 4px;">
+                                    <div style="width: 12px; height: 12px; background: #DC2626; border-radius: 6px; font-size: 6px; color: white; display: flex; align-items: center; justify-content: center;">-</div>
+                                    <span style="font-size: 8px; font-weight: bold;">2</span>
+                                    <div style="width: 12px; height: 12px; background: #DC2626; border-radius: 6px; font-size: 6px; color: white; display: flex; align-items: center; justify-content: center;">+</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; background: #F5F5F5; padding: 6px; border-radius: 4px; margin-bottom: 8px;">
+                                <div style="display: flex; align-items: center;">
+                                    <span style="margin-right: 4px; font-size: 10px;">👖</span>
+                                    <div>
+                                        <div style="font-size: 7px; font-weight: bold;">Pants</div>
+                                        <div style="font-size: 6px; color: #6B7280;">₹10 per piece</div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 4px;">
+                                    <div style="width: 12px; height: 12px; background: #DC2626; border-radius: 6px; font-size: 6px; color: white; display: flex; align-items: center; justify-content: center;">-</div>
+                                    <span style="font-size: 8px; font-weight: bold;">1</span>
+                                    <div style="width: 12px; height: 12px; background: #DC2626; border-radius: 6px; font-size: 6px; color: white; display: flex; align-items: center; justify-content: center;">+</div>
+                                </div>
+                            </div>
+                            <div style="background: #DC2626; color: white; padding: 8px; border-radius: 6px;">
+                                <div style="font-size: 7px; font-weight: bold; margin-bottom: 2px;">Order Summary</div>
+                                <div style="font-size: 6px; margin-bottom: 2px;">Total Items: 3</div>
+                                <div style="font-size: 8px; font-weight: bold;">Total: ₹30</div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4>Interactive Item Selection</h4>
+                    <ul style="margin-top: 10px; color: #6B7280;">
+                        <li>👔 Shirts, Pants, Jackets & more</li>
+                        <li>💰 Transparent per-piece pricing</li>
+                        <li>🔢 Easy quantity adjustment</li>
+                        <li>📊 Live price calculation</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="card-header">
+                    <h3>💳 Smart Checkout</h3>
+                </div>
+                <div class="card-body">
+                    <div class="phone-mockup">
+                        <div class="phone-content" style="background: white; padding: 10px;">
+                            <div style="font-weight: bold; font-size: 10px; margin-bottom: 8px;">Checkout</div>
+                            <div style="margin-bottom: 8px;">
+                                <div style="font-size: 8px; font-weight: bold; margin-bottom: 4px;">Order Summary</div>
+                                <div style="display: flex; justify-content: space-between; font-size: 6px;">
+                                    <span>2x Shirt</span><span>₹20</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 6px;">
+                                    <span>1x Pants</span><span>₹10</span>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 8px;">
+                                <div style="font-size: 8px; font-weight: bold; margin-bottom: 4px;">Pickup & Delivery</div>
+                                <div style="font-size: 6px; color: #6B7280;">📅 Today, 10:30 AM - 2:30 PM</div>
+                                <div style="font-size: 6px; color: #6B7280;">📍 A-101, Sunshine Apartments...</div>
+                            </div>
+                            <div style="margin-bottom: 8px;">
+                                <div style="font-size: 8px; font-weight: bold; margin-bottom: 4px;">Apply Coupon</div>
+                                <div style="display: flex; gap: 2px;">
+                                    <input type="text" placeholder="YOURSPECIAL" style="flex: 1; padding: 3px; border: 1px solid #F5F5F5; border-radius: 3px; font-size: 6px;">
+                                    <button style="background: #DC2626; color: white; border: none; padding: 3px 6px; border-radius: 3px; font-size: 6px;">Apply</button>
+                                </div>
+                            </div>
+                            <div style="background: #F5F5F5; padding: 6px; border-radius: 4px;">
+                                <div style="display: flex; justify-content: space-between; font-size: 6px; margin-bottom: 2px;">
+                                    <span>Subtotal</span><span>₹30</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 6px; color: #10B981;">
+                                    <span>Discount</span><span>-₹3</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 7px; font-weight: bold; border-top: 1px solid #6B7280; padding-top: 2px; margin-top: 2px;">
+                                    <span>Total</span><span>₹27</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4>Seamless Payment Flow</h4>
+                    <ul style="margin-top: 10px; color: #6B7280;">
+                        <li>📋 Detailed order summary</li>
+                        <li>📍 Address & timing confirmation</li>
+                        <li>🎫 Coupon code support</li>
+                        <li>💰 Real-time discount calculation</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="card-header">
+                    <h3>📦 Live Order Tracking</h3>
+                </div>
+                <div class="card-body">
+                    <div class="phone-mockup">
+                        <div class="phone-content" style="background: white; padding: 10px;">
+                            <div style="margin-bottom: 10px;">
+                                <div style="font-weight: bold; font-size: 10px;">Order Tracking</div>
+                                <div style="font-size: 8px; margin-bottom: 2px;">Order #IE240101001</div>
+                                <div style="font-size: 6px; color: #6B7280;">6 items • Picked</div>
+                            </div>
+                            <div style="margin-bottom: 10px;">
+                                <div style="text-align: center; margin-bottom: 6px;">
+                                    <div style="width: 20px; height: 20px; border-radius: 10px; background: #10B981; display: inline-flex; justify-content: center; align-items: center; margin-bottom: 2px;">
+                                        <span style="font-size: 8px;">📦</span>
+                                    </div>
+                                    <div style="font-size: 6px; color: #10B981; font-weight: bold;">Picked</div>
+                                    <div style="width: 1px; height: 8px; background: #F5F5F5; margin: 2px auto;"></div>
+                                </div>
+                                <div style="text-align: center; margin-bottom: 6px;">
+                                    <div style="width: 20px; height: 20px; border-radius: 10px; background: #F5F5F5; display: inline-flex; justify-content: center; align-items: center; margin-bottom: 2px;">
+                                        <span style="font-size: 8px;">🔥</span>
+                                    </div>
+                                    <div style="font-size: 6px; color: #6B7280;">Ironing</div>
+                                    <div style="width: 1px; height: 8px; background: #F5F5F5; margin: 2px auto;"></div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="width: 20px; height: 20px; border-radius: 10px; background: #F5F5F5; display: inline-flex; justify-content: center; align-items: center; margin-bottom: 2px;">
+                                        <span style="font-size: 8px;">🚚</span>
+                                    </div>
+                                    <div style="font-size: 6px; color: #6B7280;">Delivery</div>
+                                </div>
+                            </div>
+                            <div style="font-size: 6px; color: #6B7280;">
+                                📅 Pickup: Today, 10:30 AM<br>
+                                📅 Delivery: Today, 2:30 PM
+                            </div>
+                        </div>
+                    </div>
+                    <h4>Real-time Status Updates</h4>
+                    <ul style="margin-top: 10px; color: #6B7280;">
+                        <li>📦 Live order status tracking</li>
+                        <li>🔄 Visual progress indicators</li>
+                        <li>⏰ Pickup & delivery timing</li>
+                        <li>📞 Support contact options</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="card-header">
+                    <h3>👤 User Profile & Support</h3>
+                </div>
+                <div class="card-body">
+                    <div class="phone-mockup">
+                        <div class="phone-content" style="background: white; padding: 10px;">
+                            <div style="font-weight: bold; font-size: 10px; margin-bottom: 8px;">Profile</div>
+                            <div style="text-align: center; margin-bottom: 8px;">
+                                <div style="width: 30px; height: 30px; border-radius: 15px; background: #DC2626; display: inline-flex; justify-content: center; align-items: center; margin-bottom: 4px;">
+                                    <span style="font-size: 12px; color: white; font-weight: bold;">R</span>
+                                </div>
+                                <div style="font-size: 8px; font-weight: bold;">Rahul Sharma</div>
+                                <div style="font-size: 6px; color: #6B7280;">+91 98765 43210</div>
+                            </div>
+                            <div style="margin-bottom: 6px;">
+                                <div style="font-size: 7px; font-weight: bold; margin-bottom: 3px;">Saved Addresses</div>
+                                <div style="background: #F5F5F5; padding: 4px; border-radius: 3px; font-size: 6px; margin-bottom: 2px;">
+                                    📍 A-101, Sunshine Apartments...
+                                </div>
+                                <div style="background: #F5F5F5; padding: 4px; border-radius: 3px; font-size: 6px;">
+                                    📍 B-205, Green Valley...
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 6px;">
+                                <div style="font-size: 7px; font-weight: bold; margin-bottom: 3px;">Order History</div>
+                                <div style="display: flex; justify-content: space-between; font-size: 6px; padding: 2px 0; border-bottom: 1px solid #F5F5F5;">
+                                    <span>Order #IE240101001 • ₹80</span>
+                                    <span>Jan 1, 2024</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="font-size: 7px; font-weight: bold; margin-bottom: 3px;">Help & Support</div>
+                                <div style="font-size: 6px; padding: 2px 0; border-bottom: 1px solid #F5F5F5;">📱 WhatsApp Support</div>
+                                <div style="font-size: 6px; padding: 2px 0; border-bottom: 1px solid #F5F5F5;">📞 Call Support</div>
+                                <div style="font-size: 6px; padding: 2px 0;">💬 Live Chat</div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4>Complete User Management</h4>
+                    <ul style="margin-top: 10px; color: #6B7280;">
+                        <li>👤 Personal profile management</li>
+                        <li>📍 Multiple address storage</li>
+                        <li>📋 Complete order history</li>
+                        <li>🆘 24/7 customer support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cta-section">
+            <h2 style="margin-bottom: 20px;">🚀 Technical Features</h2>
+            <div class="tech-stack">
+                <span class="tech-badge">React Native</span>
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">Mobile-First Design</span>
+                <span class="tech-badge">Progressive Web App</span>
+                <span class="tech-badge">Responsive UI</span>
+                <span class="tech-badge">Animations</span>
+                <span class="tech-badge">State Management</span>
+                <span class="tech-badge">Modern UX</span>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <h3 style="margin-bottom: 15px;">🎯 Key Highlights</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; text-align: left;">
+                    <div>
+                        <h4>🎨 Premium Design</h4>
+                        <p style="color: #6B7280; font-size: 14px;">Bold red & black branding, modern UI with smooth animations and microinteractions</p>
+                    </div>
+                    <div>
+                        <h4>📱 Mobile-First</h4>
+                        <p style="color: #6B7280; font-size: 14px;">Optimized for Android devices with touch-friendly interface and responsive design</p>
+                    </div>
+                    <div>
+                        <h4>⚡ Performance</h4>
+                        <p style="color: #6B7280; font-size: 14px;">Fast loading, smooth transitions, and efficient state management for optimal UX</p>
+                    </div>
+                    <div>
+                        <h4>🔒 Secure</h4>
+                        <p style="color: #6B7280; font-size: 14px;">OTP-based authentication, secure data handling, and privacy-focused design</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <a href="index.html" target="_blank" class="btn-primary">🎮 Try Live Demo</a>
+                <a href="../README.md" target="_blank" class="btn-primary">📖 Read Documentation</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
