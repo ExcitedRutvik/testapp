@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iron Express - Premium Doorstep Ironing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        #app-root {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #DC2626 0%, #1F1F1F 100%);
+        }
+        
+        .mobile-container {
+            width: 375px;
+            height: 812px;
+            max-width: 100vw;
+            max-height: 100vh;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .loading-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            background: #DC2626;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .logo {
+            font-size: 48px;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+        
+        .tagline {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .loading-text {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        .spinner {
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top: 3px solid white;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 400px) {
+            .mobile-container {
+                width: 100vw;
+                height: 100vh;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app-root">
+        <div class="mobile-container">
+            <div class="loading-screen">
+                <div class="logo">🏃‍♂️</div>
+                <h1>Iron Express</h1>
+                <p class="tagline">Premium Cloth Ironing. At your Doorstep.</p>
+                <div class="spinner"></div>
+                <p class="loading-text">Loading your premium ironing experience...</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Simple app simulation since we don't have webpack setup
+        setTimeout(() => {
+            document.querySelector('#app-root').innerHTML = `
+                <div class="mobile-container">
+                    <div style="height: 100%; background: #DC2626; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; padding: 20px;">
+                        <div style="font-size: 48px; margin-bottom: 20px; animation: bounce 2s infinite;">🏃‍♂️</div>
+                        <h1 style="font-size: 36px; margin-bottom: 10px;">Iron Express</h1>
+                        <p style="font-size: 18px; margin-bottom: 40px; opacity: 0.9;">Premium Cloth Ironing. At your Doorstep.</p>
+                        <button onclick="showLogin()" style="background: white; color: #DC2626; border: none; padding: 16px 32px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                            Get Started
+                        </button>
+                    </div>
+                </div>
+            `;
+        }, 2000);
+        
+        function showLogin() {
+            document.querySelector('#app-root').innerHTML = `
+                <div class="mobile-container">
+                    <div style="height: 100%; background: white; padding: 24px; display: flex; flex-direction: column; justify-content: center;">
+                        <div style="text-align: center; margin-bottom: 40px;">
+                            <div style="font-size: 36px; color: #DC2626; margin-bottom: 20px;">🏃‍♂️ Iron Express</div>
+                            <h2 style="font-size: 28px; color: #1F1F1F; margin-bottom: 10px;">Welcome Back!</h2>
+                            <p style="color: #6B7280;">Enter your mobile number to continue</p>
+                        </div>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; font-weight: 600; color: #1F1F1F; margin-bottom: 8px;">Mobile Number</label>
+                            <div style="display: flex; border: 2px solid #F5F5F5; border-radius: 12px; background: white;">
+                                <span style="padding: 16px; border-right: 1px solid #F5F5F5; color: #6B7280;">+91</span>
+                                <input type="tel" placeholder="98765 43210" style="flex: 1; padding: 16px; border: none; outline: none; font-size: 16px;" maxlength="10" id="phoneInput">
+                            </div>
+                        </div>
+                        
+                        <button onclick="sendOTP()" style="background: #DC2626; color: white; border: none; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; margin-bottom: 20px;" id="loginBtn">
+                            Send OTP
+                        </button>
+                        
+                        <div style="text-align: center;">
+                            <p style="font-size: 12px; color: #6B7280;">By continuing, you agree to our Terms & Privacy Policy</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function sendOTP() {
+            const phone = document.getElementById('phoneInput').value;
+            if (phone.length === 10) {
+                document.getElementById('loginBtn').innerHTML = 'Sending OTP...';
+                setTimeout(() => {
+                    showOTP();
+                }, 1500);
+            } else {
+                alert('Please enter a valid 10-digit mobile number');
+            }
+        }
+        
+        function showOTP() {
+            document.querySelector('#app-root').innerHTML = `
+                <div class="mobile-container">
+                    <div style="height: 100%; background: white; padding: 24px; display: flex; flex-direction: column; justify-content: center;">
+                        <div style="text-align: center; margin-bottom: 40px;">
+                            <div style="font-size: 36px; color: #DC2626; margin-bottom: 20px;">🏃‍♂️ Iron Express</div>
+                            <h2 style="font-size: 28px; color: #1F1F1F; margin-bottom: 10px;">Enter OTP</h2>
+                            <p style="color: #6B7280;">Please check your SMS for the verification code</p>
+                        </div>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; font-weight: 600; color: #1F1F1F; margin-bottom: 8px;">Enter OTP</label>
+                            <input type="number" placeholder="Enter 4-digit OTP" style="width: 100%; padding: 16px; border: 2px solid #F5F5F5; border-radius: 12px; font-size: 16px; outline: none;" maxlength="4" id="otpInput">
+                        </div>
+                        
+                        <button onclick="verifyOTP()" style="background: #DC2626; color: white; border: none; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer;">
+                            Verify OTP
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function verifyOTP() {
+            const otp = document.getElementById('otpInput').value;
+            if (otp.length === 4) {
+                showHome();
+            } else {
+                alert('Please enter the 4-digit OTP');
+            }
+        }
+        
+        function showHome() {
+            document.querySelector('#app-root').innerHTML = `
+                <div class="mobile-container">
+                    <div style="height: 100%; background: white; display: flex; flex-direction: column;">
+                        <!-- Header -->
+                        <div style="padding: 24px; padding-bottom: 0;">
+                            <h1 style="font-size: 24px; color: #1F1F1F; margin-bottom: 5px;">Hello, Rahul! 👋</h1>
+                            <p style="color: #6B7280;">Ready for fresh, crisp clothes?</p>
+                        </div>
+                        
+                        <!-- Content -->
+                        <div style="flex: 1; padding: 24px; overflow-y: auto;">
+                            <!-- Address Section -->
+                            <div style="margin-bottom: 30px;">
+                                <h3 style="font-size: 18px; color: #1F1F1F; margin-bottom: 12px;">Pickup Address</h3>
+                                <div style="display: flex; background: #F5F5F5; padding: 16px; border-radius: 12px; margin-bottom: 10px;">
+                                    <span style="margin-right: 8px;">📍</span>
+                                    <span style="flex: 1; font-size: 14px; color: #1F1F1F; line-height: 1.4;">A-101, Sunshine Apartments, Sector 15, Gurgaon, 122001</span>
+                                </div>
+                                <button style="background: none; border: none; color: #DC2626; font-weight: 600; font-size: 14px; cursor: pointer;">Change Address</button>
+                            </div>
+                            
+                            <!-- Service Highlights -->
+                            <div style="display: flex; gap: 8px; margin-bottom: 40px;">
+                                <div style="flex: 1; background: #F5F5F5; padding: 16px; border-radius: 12px; text-align: center;">
+                                    <div style="font-size: 24px; margin-bottom: 8px;">⚡</div>
+                                    <div style="font-size: 12px; font-weight: 600; color: #1F1F1F; margin-bottom: 4px;">Quick Service</div>
+                                    <div style="font-size: 10px; color: #6B7280;">As fast as 4 hours</div>
+                                </div>
+                                <div style="flex: 1; background: #F5F5F5; padding: 16px; border-radius: 12px; text-align: center;">
+                                    <div style="font-size: 24px; margin-bottom: 8px;">🎯</div>
+                                    <div style="font-size: 12px; font-weight: 600; color: #1F1F1F; margin-bottom: 4px;">Premium Quality</div>
+                                    <div style="font-size: 10px; color: #6B7280;">Professional ironing</div>
+                                </div>
+                                <div style="flex: 1; background: #F5F5F5; padding: 16px; border-radius: 12px; text-align: center;">
+                                    <div style="font-size: 24px; margin-bottom: 8px;">🚚</div>
+                                    <div style="font-size: 12px; font-weight: 600; color: #1F1F1F; margin-bottom: 4px;">Doorstep Service</div>
+                                    <div style="font-size: 10px; color: #6B7280;">Pickup & delivery</div>
+                                </div>
+                            </div>
+                            
+                            <button onclick="showDeliveryOptions()" style="width: 100%; background: #DC2626; color: white; border: none; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer;">
+                                Schedule a Pickup
+                            </button>
+                        </div>
+                        
+                        <!-- Bottom Navigation -->
+                        <div style="display: flex; background: white; border-top: 1px solid #F5F5F5; padding: 8px;">
+                            <div style="flex: 1; text-align: center; padding: 8px; background: #F5F5F5; border-radius: 8px; margin: 0 4px;">
+                                <div style="font-size: 20px; margin-bottom: 4px;">🏠</div>
+                                <div style="font-size: 10px; color: #DC2626; font-weight: 600;">Home</div>
+                            </div>
+                            <div onclick="showTracking()" style="flex: 1; text-align: center; padding: 8px; cursor: pointer;">
+                                <div style="font-size: 20px; margin-bottom: 4px;">📦</div>
+                                <div style="font-size: 10px; color: #6B7280;">Orders</div>
+                            </div>
+                            <div onclick="showProfile()" style="flex: 1; text-align: center; padding: 8px; cursor: pointer;">
+                                <div style="font-size: 20px; margin-bottom: 4px;">👤</div>
+                                <div style="font-size: 10px; color: #6B7280;">Profile</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function showDeliveryOptions() {
+            document.querySelector('#app-root').innerHTML = `
+                <div class="mobile-container">
+                    <div style="height: 100%; background: white;">
+                        <div style="padding: 24px; padding-bottom: 16px;">
+                            <h1 style="font-size: 24px; color: #1F1F1F; margin-bottom: 8px;">Choose Delivery Option</h1>
+                            <p style="color: #6B7280;">When would you like your clothes back?</p>
+                        </div>
+                        
+                        <div style="padding: 24px; overflow-y: auto;">
+                            <div onclick="showClothSelection()" style="border: 2px solid #DC2626; border-radius: 16px; padding: 20px; margin-bottom: 16px; cursor: pointer; background: white;">
+                                <div style="display: flex; align-items: center;">
+                                    <span style="font-size: 32px; margin-right: 16px;">🚀</span>
+                                    <div style="flex: 1;">
+                                        <h3 style="font-size: 18px; color: #1F1F1F; margin-bottom: 4px;">Quick</h3>
+                                        <p style="font-size: 14px; color: #6B7280; margin-bottom: 4px;">Within 4 hours</p>
+                                        <p style="font-size: 12px; color: #DC2626; font-weight: 600;">Express charges apply</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div onclick="showClothSelection()" style="border: 2px solid #10B981; border-radius: 16px; padding: 20px; margin-bottom: 16px; cursor: pointer; background: white;">
+                                <div style="display: flex; align-items: center;">
+                                    <span style="font-size: 32px; margin-right: 16px;">📅</span>
+                                    <div style="flex: 1;">
+                                        <h3 style="font-size: 18px; color: #1F1F1F; margin-bottom: 4px;">Same Day</h3>
+                                        <p style="font-size: 14px; color: #6B7280; margin-bottom: 4px;">By end of day</p>
+                                        <p style="font-size: 12px; color: #10B981; font-weight: 600;">Standard pricing</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div onclick="showClothSelection()" style="border: 2px solid #F59E0B; border-radius: 16px; padding: 20px; margin-bottom: 16px; cursor: pointer; background: white;">
+                                <div style="display: flex; align-items: center;">
+                                    <span style="font-size: 32px; margin-right: 16px;">📆</span>
+                                    <div style="flex: 1;">
+                                        <h3 style="font-size: 18px; color: #1F1F1F; margin-bottom: 4px;">Schedule</h3>
+                                        <p style="font-size: 14px; color: #6B7280; margin-bottom: 4px;">Choose date & time</p>
+                                        <p style="font-size: 12px; color: #F59E0B; font-weight: 600;">Standard pricing</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        let shirtQty = 0, pantsQty = 0, jacketQty = 0;
+        
+        function showClothSelection() {
+            updateClothSelection();
+        }
+        
+        function updateClothSelection() {
+            const total = (shirtQty * 10) + (pantsQty * 10) + (jacketQty * 20);
+            const totalItems = shirtQty + pantsQty + jacketQty;
+            
+            document.querySelector('#app-root').innerHTML = `
+                <div class="mobile-container">
+                    <div style="height: 100%; background: white; display: flex; flex-direction: column;">
+                        <div style="padding: 24px; padding-bottom: 16px;">
+                            <h1 style="font-size: 24px; color: #1F1F1F; margin-bottom: 8px;">Select Your Clothes</h1>
+                            <p style="color: #6B7280;">What needs ironing today?</p>
+                        </div>
+                        
+                        <div style="flex: 1; padding: 24px; overflow-y: auto;">
+                            <!-- Shirt -->
+                            <div style="display: flex; justify-content: space-between; align-items: center; background: #F5F5F5; padding: 16px; border-radius: 12px; margin-bottom: 12px;">
+                                <div style="display: flex; align-items: center; flex: 1;">
+                                    <span style="font-size: 24px; margin-right: 12px;">👔</span>
+                                    <div style="flex: 1;">
+                                        <div style="font-size: 16px; font-weight: 600; color: #1F1F1F; margin-bottom: 2px;">Shirt</div>
+                                        <div style="font-size: 12px; color: #6B7280;">₹10 per piece</div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center;">
+                                    <button onclick="changeQty('shirt', -1)" style="width: 32px; height: 32px; background: #DC2626; border: none; border-radius: 16px; color: white; font-size: 18px; font-weight: bold; cursor: pointer;">-</button>
+                                    <span style="font-size: 16px; font-weight: bold; color: #1F1F1F; margin: 0 16px; min-width: 20px; text-align: center;">${shirtQty}</span>
+                                    <button onclick="changeQty('shirt', 1)" style="width: 32px; height: 32px; background: #DC2626; border: none; border-radius: 16px; color: white; font-size: 18px; font-weight: bold; cursor: pointer;">+</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Pants -->
+                            <div style="display: flex; justify-content: space-between; align-items: center; background: #F5F5F5; padding: 16px; border-radius: 12px; margin-bottom: 12px;">
+                                <div style="display: flex; align-items: center; flex: 1;">
+                                    <span style="font-size: 24px; margin-right: 12px;">👖</span>
+                                    <div style="flex: 1;">
+                                        <div style="font-size: 16px; font-weight: 600; color: #1F1F1F; margin-bottom: 2px;">Pants</div>
+                                        <div style="font-size: 12px; color: #6B7280;">₹10 per piece</div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center;">
+                                    <button onclick="changeQty('pants', -1)" style="width: 32px; height: 32px; background: #DC2626; border: none; border-radius: 16px; color: white; font-size: 18px; font-weight: bold; cursor: pointer;">-</button>
+                                    <span style="font-size: 16px; font-weight: bold; color: #1F1F1F; margin: 0 16px; min-width: 20px; text-align: center;">${pantsQty}</span>
+                                    <button onclick="changeQty('pants', 1)" style="width: 32px; height: 32px; background: #DC2626; border: none; border-radius: 16px; color: white; font-size: 18px; font-weight: bold; cursor: pointer;">+</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Jacket -->
+                            <div style="display: flex; justify-content: space-between; align-items: center; background: #F5F5F5; padding: 16px; border-radius: 12px; margin-bottom: 12px;">
+                                <div style="display: flex; align-items: center; flex: 1;">
+                                    <span style="font-size: 24px; margin-right: 12px;">🧥</span>
+                                    <div style="flex: 1;">
+                                        <div style="font-size: 16px; font-weight: 600; color: #1F1F1F; margin-bottom: 2px;">Jacket</div>
+                                        <div style="font-size: 12px; color: #6B7280;">₹20 per piece</div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; align-items: center;">
+                                    <button onclick="changeQty('jacket', -1)" style="width: 32px; height: 32px; background: #DC2626; border: none; border-radius: 16px; color: white; font-size: 18px; font-weight: bold; cursor: pointer;">-</button>
+                                    <span style="font-size: 16px; font-weight: bold; color: #1F1F1F; margin: 0 16px; min-width: 20px; text-align: center;">${jacketQty}</span>
+                                    <button onclick="changeQty('jacket', 1)" style="width: 32px; height: 32px; background: #DC2626; border: none; border-radius: 16px; color: white; font-size: 18px; font-weight: bold; cursor: pointer;">+</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Order Summary -->
+                            <div style="background: #DC2626; padding: 20px; border-radius: 16px; margin-top: 20px;">
+                                <div style="font-size: 16px; font-weight: bold; color: white; margin-bottom: 8px;">Order Summary</div>
+                                <div style="font-size: 14px; color: white; margin-bottom: 4px; opacity: 0.9;">Total Items: ${totalItems}</div>
+                                <div style="font-size: 18px; font-weight: bold; color: white;">Total Amount: ₹${total}</div>
+                            </div>
+                        </div>
+                        
+                        <div style="padding: 24px; padding-bottom: 8px;">
+                            <button onclick="showCheckout()" style="width: 100%; background: ${totalItems > 0 ? '#DC2626' : '#6B7280'}; color: white; border: none; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: ${totalItems > 0 ? 'pointer' : 'not-allowed'};" ${totalItems === 0 ? 'disabled' : ''}>
+                                Proceed to Checkout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function changeQty(item, change) {
+            if (item === 'shirt') shirtQty = Math.max(0, shirtQty + change);
+            if (item === 'pants') pantsQty = Math.max(0, pantsQty + change);
+            if (item === 'jacket') jacketQty = Math.max(0, jacketQty + change);
+            updateClothSelection();
+        }
+        
+        function showCheckout() {
+            const total = (shirtQty * 10) + (pantsQty * 10) + (jacketQty * 20);
+            document.querySelector('#app-root').innerHTML = `
+                <div class="mobile-container">
+                    <div style="height: 100%; background: white; display: flex; flex-direction: column;">
+                        <div style="padding: 24px; overflow-y: auto; flex: 1;">
+                            <h1 style="font-size: 24px; color: #1F1F1F; margin-bottom: 24px;">Checkout</h1>
+                            
+                            <!-- Order Summary -->
+                            <div style="margin-bottom: 24px;">
+                                <h3 style="font-size: 18px; color: #1F1F1F; margin-bottom: 12px;">Order Summary</h3>
+                                ${shirtQty > 0 ? `<div style="display: flex; justify-content: space-between; padding: 8px 0;"><span>${shirtQty}x Shirt</span><span>₹${shirtQty * 10}</span></div>` : ''}
+                                ${pantsQty > 0 ? `<div style="display: flex; justify-content: space-between; padding: 8px 0;"><span>${pantsQty}x Pants</span><span>₹${pantsQty * 10}</span></div>` : ''}
+                                ${jacketQty > 0 ? `<div style="display: flex; justify-content: space-between; padding: 8px 0;"><span>${jacketQty}x Jacket</span><span>₹${jacketQty * 20}</span></div>` : ''}
+                            </div>
+                            
+                            <!-- Pickup & Delivery -->
+                            <div style="margin-bottom: 24px;">
+                                <h3 style="font-size: 18px; color: #1F1F1F; margin-bottom: 12px;">Pickup & Delivery</h3>
+                                <p style="font-size: 14px; color: #6B7280; margin-bottom: 4px;">📅 Today, 10:30 AM - 2:30 PM</p>
+                                <p style="font-size: 14px; color: #6B7280;">📍 A-101, Sunshine Apartments, Sector 15, Gurgaon</p>
+                            </div>
+                            
+                            <!-- Coupon -->
+                            <div style="margin-bottom: 24px;">
+                                <h3 style="font-size: 18px; color: #1F1F1F; margin-bottom: 12px;">Apply Coupon</h3>
+                                <div style="display: flex; gap: 8px;">
+                                    <input type="text" placeholder="Enter coupon code (try: YOURSPECIAL)" style="flex: 1; border: 1px solid #F5F5F5; border-radius: 8px; padding: 12px; font-size: 14px;" id="couponInput">
+                                    <button onclick="applyCoupon()" style="background: #DC2626; color: white; border: none; padding: 12px 16px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;">Apply</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Bill -->
+                            <div style="background: #F5F5F5; padding: 16px; border-radius: 12px;">
+                                <div style="display: flex; justify-content: space-between; padding: 4px 0;"><span>Subtotal</span><span>₹${total}</span></div>
+                                <div id="discountRow" style="display: none;"></div>
+                                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-top: 1px solid #6B7280; margin-top: 8px;"><span style="font-weight: bold;">Total</span><span style="font-weight: bold;" id="finalTotal">₹${total}</span></div>
+                            </div>
+                        </div>
+                        
+                        <div style="padding: 24px; padding-bottom: 8px;">
+                            <button onclick="placeOrder()" style="width: 100%; background: #DC2626; color: white; border: none; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer;" id="placeOrderBtn">
+                                Place Order - ₹${total}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function applyCoupon() {
+            const coupon = document.getElementById('couponInput').value.toUpperCase();
+            const total = (shirtQty * 10) + (pantsQty * 10) + (jacketQty * 20);
+            
+            if (coupon === 'YOURSPECIAL') {
+                const discount = Math.floor(total * 0.1);
+                const finalAmount = total - discount;
+                
+                document.getElementById('discountRow').style.display = 'flex';
+                document.getElementById('discountRow').innerHTML = '<span style="color: #10B981;">Discount</span><span style="color: #10B981;">-₹' + discount + '</span>';
+                document.getElementById('finalTotal').textContent = '₹' + finalAmount;
+                document.getElementById('placeOrderBtn').textContent = 'Place Order - ₹' + finalAmount;
+                
+                alert('Coupon Applied! 10% discount applied successfully');
+            } else {
+                alert('Invalid Coupon. Please enter a valid coupon code');
+            }
+        }
+        
+        function placeOrder() {
+            alert('Order Placed! Your order has been placed successfully. Order ID: IE240101001');
+            showTracking();
+        }
+        
+        function showTracking() {
+            document.querySelector('#app-root').innerHTML = `
+                <div class="mobile-container">
+                    <div style="height: 100%; background: white; display: flex; flex-direction: column;">
+                        <div style="padding: 24px; overflow-y: auto; flex: 1;">
+                            <h1 style="font-size: 24px; color: #1F1F1F; margin-bottom: 24px;">Order Tracking</h1>
+                            
+                            <div style="margin-bottom: 30px;">
+                                <h2 style="font-size: 18px; color: #1F1F1F; margin-bottom: 4px;">Order #IE240101001</h2>
+                                <p style="color: #6B7280;">6 items • Picked</p>
+                            </div>
+                            
+                            <!-- Status Steps -->
+                            <div style="margin-bottom: 30px;">
+                                <div style="text-align: center; margin-bottom: 20px;">
+                                    <div style="width: 50px; height: 50px; border-radius: 25px; background: #10B981; display: inline-flex; justify-content: center; align-items: center; margin-bottom: 8px;">
+                                        <span style="font-size: 20px;">📦</span>
+                                    </div>
+                                    <div style="font-size: 12px; color: #10B981; font-weight: 600;">Picked</div>
+                                    <div style="width: 2px; height: 20px; background: #F5F5F5; margin: 8px auto;"></div>
+                                </div>
+                                
+                                <div style="text-align: center; margin-bottom: 20px;">
+                                    <div style="width: 50px; height: 50px; border-radius: 25px; background: #F5F5F5; display: inline-flex; justify-content: center; align-items: center; margin-bottom: 8px;">
+                                        <span style="font-size: 20px;">🔥</span>
+                                    </div>
+                                    <div style="font-size: 12px; color: #6B7280;">Ironing</div>
+                                    <div style="width: 2px; height: 20px; background: #F5F5F5; margin: 8px auto;"></div>
+                                </div>
+                                
+                                <div style="text-align: center; margin-bottom: 20px;">
+                                    <div style="width: 50px; height: 50px; border-radius: 25px; background: #F5F5F5; display: inline-flex; justify-content: center; align-items: center; margin-bottom: 8px;">
+                                        <span style="font-size: 20px;">🚚</span>
+                                    </div>
+                                    <div style="font-size: 12px; color: #6B7280;">Out for Delivery</div>
+                                    <div style="width: 2px; height: 20px; background: #F5F5F5; margin: 8px auto;"></div>
+                                </div>
+                                
+                                <div style="text-align: center;">
+                                    <div style="width: 50px; height: 50px; border-radius: 25px; background: #F5F5F5; display: inline-flex; justify-content: center; align-items: center; margin-bottom: 8px;">
+                                        <span style="font-size: 20px;">✅</span>
+                                    </div>
+                                    <div style="font-size: 12px; color: #6B7280;">Delivered</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Timing -->
+                            <div style="margin-bottom: 24px;">
+                                <h3 style="font-size: 18px; color: #1F1F1F; margin-bottom: 12px;">Pickup & Delivery Time</h3>
+                                <p style="font-size: 14px; color: #6B7280; margin-bottom: 4px;">📅 Pickup: Today, 10:30 AM</p>
+                                <p style="font-size: 14px; color: #6B7280;">📅 Delivery: Today, 2:30 PM</p>
+                            </div>
+                            
+                            <!-- Items -->
+                            <div>
+                                <h3 style="font-size: 18px; color: #1F1F1F; margin-bottom: 12px;">Items</h3>
+                                <div style="display: flex; justify-content: space-between; padding: 8px 0;"><span>3x Shirt</span><span>₹30</span></div>
+                                <div style="display: flex; justify-content: space-between; padding: 8px 0;"><span>2x Pants</span><span>₹20</span></div>
+                                <div style="display: flex; justify-content: space-between; padding: 8px 0;"><span>1x Jacket</span><span>₹20</span></div>
+                            </div>
+                        </div>
+                        
+                        <div style="padding: 24px; padding-bottom: 8px;">
+                            <button style="width: 100%; background: #F5F5F5; color: #1F1F1F; border: none; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer;">
+                                📞 Call Support
+                            </button>
+                        </div>
+                        
+                        <!-- Bottom Navigation -->
+                        <div style="display: flex; background: white; border-top: 1px solid #F5F5F5; padding: 8px;">
+                            <div onclick="showHome()" style="flex: 1; text-align: center; padding: 8px; cursor: pointer;">
+                                <div style="font-size: 20px; margin-bottom: 4px;">🏠</div>
+                                <div style="font-size: 10px; color: #6B7280;">Home</div>
+                            </div>
+                            <div style="flex: 1; text-align: center; padding: 8px; background: #F5F5F5; border-radius: 8px; margin: 0 4px;">
+                                <div style="font-size: 20px; margin-bottom: 4px;">📦</div>
+                                <div style="font-size: 10px; color: #DC2626; font-weight: 600;">Orders</div>
+                            </div>
+                            <div onclick="showProfile()" style="flex: 1; text-align: center; padding: 8px; cursor: pointer;">
+                                <div style="font-size: 20px; margin-bottom: 4px;">👤</div>
+                                <div style="font-size: 10px; color: #6B7280;">Profile</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function showProfile() {
+            document.querySelector('#app-root').innerHTML = `
+                <div class="mobile-container">
+                    <div style="height: 100%; background: white; display: flex; flex-direction: column;">
+                        <div style="padding: 24px; overflow-y: auto; flex: 1;">
+                            <h1 style="font-size: 24px; color: #1F1F1F; margin-bottom: 24px;">Profile</h1>
+                            
+                            <!-- Profile Header -->
+                            <div style="text-align: center; margin-bottom: 30px;">
+                                <div style="width: 80px; height: 80px; border-radius: 40px; background: #DC2626; display: inline-flex; justify-content: center; align-items: center; margin-bottom: 16px;">
+                                    <span style="font-size: 32px; color: white; font-weight: bold;">R</span>
+                                </div>
+                                <h2 style="font-size: 20px; color: #1F1F1F; margin-bottom: 4px;">Rahul Sharma</h2>
+                                <p style="color: #6B7280;">+91 98765 43210</p>
+                            </div>
+                            
+                            <!-- Saved Addresses -->
+                            <div style="margin-bottom: 24px;">
+                                <h3 style="font-size: 18px; color: #1F1F1F; margin-bottom: 12px;">Saved Addresses</h3>
+                                <div style="background: #F5F5F5; padding: 12px; border-radius: 8px; margin-bottom: 8px;">
+                                    <p style="font-size: 14px; color: #1F1F1F;">📍 A-101, Sunshine Apartments, Sector 15, Gurgaon, 122001</p>
+                                </div>
+                                <div style="background: #F5F5F5; padding: 12px; border-radius: 8px; margin-bottom: 8px;">
+                                    <p style="font-size: 14px; color: #1F1F1F;">📍 B-205, Green Valley, Phase 2, Noida, 201301</p>
+                                </div>
+                                <button style="background: none; border: none; color: #DC2626; font-weight: 600; font-size: 14px; cursor: pointer; margin-top: 8px;">+ Add New Address</button>
+                            </div>
+                            
+                            <!-- Order History -->
+                            <div style="margin-bottom: 24px;">
+                                <h3 style="font-size: 18px; color: #1F1F1F; margin-bottom: 12px;">Order History</h3>
+                                <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #F5F5F5;">
+                                    <span style="font-size: 14px; color: #1F1F1F;">Order #IE240101001 • ₹80</span>
+                                    <span style="font-size: 12px; color: #6B7280;">Jan 1, 2024</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #F5F5F5;">
+                                    <span style="font-size: 14px; color: #1F1F1F;">Order #IE231230002 • ₹60</span>
+                                    <span style="font-size: 12px; color: #6B7280;">Dec 30, 2023</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Help & Support -->
+                            <div>
+                                <h3 style="font-size: 18px; color: #1F1F1F; margin-bottom: 12px;">Help & Support</h3>
+                                <div style="padding: 16px 0; border-bottom: 1px solid #F5F5F5; cursor: pointer;">
+                                    <span style="font-size: 16px; color: #1F1F1F;">📱 WhatsApp Support</span>
+                                </div>
+                                <div style="padding: 16px 0; border-bottom: 1px solid #F5F5F5; cursor: pointer;">
+                                    <span style="font-size: 16px; color: #1F1F1F;">📞 Call Support</span>
+                                </div>
+                                <div style="padding: 16px 0; border-bottom: 1px solid #F5F5F5; cursor: pointer;">
+                                    <span style="font-size: 16px; color: #1F1F1F;">❓ FAQs</span>
+                                </div>
+                                <div style="padding: 16px 0; border-bottom: 1px solid #F5F5F5; cursor: pointer;">
+                                    <span style="font-size: 16px; color: #1F1F1F;">💬 Live Chat</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Bottom Navigation -->
+                        <div style="display: flex; background: white; border-top: 1px solid #F5F5F5; padding: 8px;">
+                            <div onclick="showHome()" style="flex: 1; text-align: center; padding: 8px; cursor: pointer;">
+                                <div style="font-size: 20px; margin-bottom: 4px;">🏠</div>
+                                <div style="font-size: 10px; color: #6B7280;">Home</div>
+                            </div>
+                            <div onclick="showTracking()" style="flex: 1; text-align: center; padding: 8px; cursor: pointer;">
+                                <div style="font-size: 20px; margin-bottom: 4px;">📦</div>
+                                <div style="font-size: 10px; color: #6B7280;">Orders</div>
+                            </div>
+                            <div style="flex: 1; text-align: center; padding: 8px; background: #F5F5F5; border-radius: 8px; margin: 0 4px;">
+                                <div style="font-size: 20px; margin-bottom: 4px;">👤</div>
+                                <div style="font-size: 10px; color: #DC2626; font-weight: 600;">Profile</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
